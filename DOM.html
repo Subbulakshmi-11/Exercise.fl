@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Styled Form with Mandatory Fields</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #eef1f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .form-container {
+      background-color: #fff;
+      padding: 30px 40px;
+      border-radius: 10px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+      width: 350px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+      transition: background-color 0.3s ease;
+    }
+
+    input.highlight {
+      background-color: #fffacb; 
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container" id="formContainer">
+    <h2 id="formHeading">User Information Form</h2>
+    <form id="userForm">
+      <label for="name">Name:</label>
+      <input type="text" id="name" />
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" />
+
+      <label for="age">Age:</label>
+      <input type="number" id="age" />
+
+      <button type="button" onclick="handleSubmit()">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    function handleSubmit() {
+      const name = document.getElementById("name");
+      const email = document.getElementById("email");
+      const labels = document.querySelectorAll("label");
+      const heading = document.getElementById("formHeading");
+      const formContainer = document.getElementById("formContainer");
+
+      
+      name.classList.remove("highlight");
+      email.classList.remove("highlight");
+
+      
+      if (name.value.trim() === "") {
+        name.classList.add("highlight");
+      }
+      if (email.value.trim() === "") {
+        email.classList.add("highlight");
+      }
+
+      
+      heading.style.color = "#333";
+      heading.style.textAlign = "center";
+      heading.style.textTransform = "uppercase";
+      heading.style.marginBottom = "20px";
+
+      
+      formContainer.style.border = "2px solid #4CAF50";
+      formContainer.style.backgroundColor = "#f9fdf9";
+
+      
+      labels.forEach(label => {
+        label.style.fontWeight = "bold";
+      });
+    }
+  </script>
+
+</body>
+</html>
