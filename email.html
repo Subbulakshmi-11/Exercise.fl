@@ -38,7 +38,7 @@
     }
 
     input.highlight {
-      background-color: #fffacb; /* light yellow */
+      background-color: #fffacb;
     }
 
     button {
@@ -80,7 +80,7 @@
 
   <script>
     document.getElementById('contactForm').addEventListener('submit', function(e) {
-      e.preventDefault(); // Prevent actual form submission
+      e.preventDefault(); 
 
       const nameInput = document.getElementById('name');
       const emailInput = document.getElementById('email');
@@ -88,31 +88,31 @@
 
       let valid = true;
 
-      // Reset previous highlights
+      
       nameInput.classList.remove('highlight');
       emailInput.classList.remove('highlight');
 
-      // Check if name is empty
+      
       if (nameInput.value.trim() === '') {
         nameInput.classList.add('highlight');
         valid = false;
       }
 
-      // Check if email is empty
+      
       if (emailInput.value.trim() === '') {
         emailInput.classList.add('highlight');
         valid = false;
       }
 
       if (valid) {
-        // Show confirmation message
+        
         confirmation.style.display = 'block';
 
-        // Clear input fields
+        
         nameInput.value = '';
         emailInput.value = '';
       } else {
-        // Hide confirmation if validation fails
+        
         confirmation.style.display = 'none';
       }
     });
