@@ -2,113 +2,61 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Styled Form with Mandatory Fields</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #eef1f5;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-
-    .form-container {
-      background-color: #fff;
-      padding: 30px 40px;
-      border-radius: 10px;
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-      width: 350px;
-    }
-
-    input[type="text"],
-    input[type="email"],
-    input[type="number"] {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      margin-bottom: 15px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      box-sizing: border-box;
-      transition: background-color 0.3s ease;
-    }
-
-    input.highlight {
-      background-color: #fffacb; 
-    }
-
-    button {
-      width: 100%;
-      padding: 10px;
-      background-color: #4CAF50;
-      color: white;
-      font-size: 16px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #45a049;
-    }
-  </style>
+  <title>Form DOM Manipulation</title>
 </head>
 <body>
+  <center>
 
-  <div class="form-container" id="formContainer">
-    <h2 id="formHeading">User Information Form</h2>
-    <form id="userForm">
-      <label for="name">Name:</label>
-      <input type="text" id="name" />
+  <h2 id="formHeading">User Information Form</h2>
 
-      <label for="email">Email:</label>
-      <input type="email" id="email" />
+  <form id="userForm">
+    <label for="name">Name (required):</label>
+    <input type="text" id="name" name="name"><br><br>
 
-      <label for="age">Age:</label>
-      <input type="number" id="age" />
+    <label for="email">Email (required):</label>
+    <input type="email" id="email" name="email"><br><br>
 
-      <button type="button" onclick="handleSubmit()">Submit</button>
-    </form>
-  </div>
+    <label for="age">Age:</label>
+    <input type="number" id="age" name="age"><br><br>
+
+    <button type="button" onclick="validateAndStyle()">Submit</button>
+  </form>
 
   <script>
-    function handleSubmit() {
-      const name = document.getElementById("name");
-      const email = document.getElementById("email");
-      const labels = document.querySelectorAll("label");
+    function validateAndStyle() {
+      const nameField = document.getElementById("name");
+      const emailField = document.getElementById("email");
       const heading = document.getElementById("formHeading");
-      const formContainer = document.getElementById("formContainer");
+      const form = document.getElementById("userForm");
+      const labels = document.getElementsByTagName("label");
 
-      
-      name.classList.remove("highlight");
-      email.classList.remove("highlight");
-
-      
-      if (name.value.trim() === "") {
-        name.classList.add("highlight");
-      }
-      if (email.value.trim() === "") {
-        email.classList.add("highlight");
+      if (!nameField.value.trim()) {
+        nameField.style.border = "2px solid red";
+      } else {
+        nameField.style.border = "";
       }
 
-      
-      heading.style.color = "#333";
-      heading.style.textAlign = "center";
-      heading.style.textTransform = "uppercase";
-      heading.style.marginBottom = "20px";
+      if (!emailField.value.trim()) {
+        emailField.style.border = "2px solid red";
+      } else {
+        emailField.style.border = "";
+      }
 
-      
-      formContainer.style.border = "2px solid #4CAF50";
-      formContainer.style.backgroundColor = "#f9fdf9";
+      heading.style.color = "darkblue";
+      heading.style.fontFamily = "Arial, sans-serif";
+      heading.style.textDecoration = "underline";
 
-      
-      labels.forEach(label => {
+      form.style.backgroundColor = "#f0f8ff";
+      form.style.padding = "20px";
+      form.style.border = "2px solid #ccc";
+      form.style.borderRadius = "8px";
+      form.style.width = "300px";
+
+      for (let label of labels) {
         label.style.fontWeight = "bold";
-      });
+      }
     }
   </script>
-
+  </center>
 </body>
 </html>
