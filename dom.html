@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Form with DOM Styling & Validation</title>
+<style>
+  .highlight {
+    border: 2px solid red;
+    background-color: #ffe6e6;
+  }
+</style>
+</head>
+<body>
+
+<h1 id="formHeading">User Information Form</h1>
+
+<form id="myForm" novalidate>
+  <label for="name">Name (required):</label><br />
+  <input type="text" id="name" name="name" /><br /><br />
+
+  <label for="email">Email (required):</label><br />
+  <input type="email" id="email" name="email" /><br /><br />
+
+  <label for="age">Age:</label><br />
+  <input type="number" id="age" name="age" /><br /><br />
+
+  <button type="button" id="submitBtn">Submit</button>
+</form>
+
+<script>
+  // Style heading and form using DOM methods
+  const heading = document.getElementById('formHeading');
+  heading.style.color = '#2c3e50';
+  heading.style.textAlign = 'center';
+  heading.style.fontFamily = 'Arial, sans-serif';
+  heading.style.marginBottom = '20px';
+
+  const form = document.getElementById('myForm');
+  form.style.maxWidth = '400px';
+  form.style.margin = '0 auto';
+  form.style.padding = '20px';
+  form.style.border = '2px solid #2980b9';
+  form.style.borderRadius = '8px';
+  form.style.backgroundColor = '#f0f8ff';
+  form.style.fontFamily = 'Arial, sans-serif';
+
+  // Bold all labels using DOM methods
+  const labels = form.getElementsByTagName('label');
+  for(let label of labels){
+    label.style.fontWeight = 'bold';
+  }
+
+  // Validation & highlight on button click
+  document.getElementById('submitBtn').addEventListener('click', () => {
+    const nameField = document.getElementById('name');
+    const emailField = document.getElementById('email');
+
+    // Remove previous highlights
+    nameField.classList.remove('highlight');
+    emailField.classList.remove('highlight');
+
+    let valid = true;
+
+    if (!nameField.value.trim()) {
+      nameField.classList.add('highlight');
+      valid = false;
+    }
+
+    if (!emailField.value.trim()) {
+      emailField.classList.add('highlight');
+      valid = false;
+    }
+
+    if (valid) {
+      alert('Form submitted successfully!');
+      // You can add form submission logic here if needed
+    } else {
+      alert('Please fill in the mandatory fields highlighted in red.');
+    }
+  });
+</script>
+
+</body>
+</html>
